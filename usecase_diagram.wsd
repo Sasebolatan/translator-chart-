@@ -1,0 +1,19 @@
+@startuml
+actor User
+actor "AI System" as AI
+
+rectangle "AI TRANZLATOR System" {
+  User --> (Upload Video)
+  User --> (Select Language)
+  User --> (View Translated Subtitles)
+  User --> (Read Summary)
+
+  (Transcribe Audio) --> AI
+  (Translate Text) --> AI
+  (Generate Summary) --> AI
+
+  (Upload Video) --> (Transcribe Audio)
+  (Transcribe Audio) --> (Translate Text)
+  (Translate Text) --> (Generate Summary)
+}
+@enduml
