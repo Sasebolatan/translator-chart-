@@ -1,0 +1,44 @@
+@startuml ERD_AI_TRANZLATOR
+entity "User" as user {
+  *user_id : int <<PK>>
+  selected_language : string
+}
+
+entity "Video" as video {
+  *video_id : int <<PK>>
+  file_name : string
+  format : string
+  user_id : int <<FK>>
+}
+
+entity "Audio" as audio {
+  *audio_id : int <<PK>>
+  audio_path : string
+  video_id : int <<FK>>
+}
+
+entity "Transcript" as transcript {
+  *transcript_id : int <<PK>>
+  text : text
+  audio_id : int <<FK>>
+}
+
+entity "Translation" as translation {
+  *translation_id : int <<PK>>
+  language : string
+  translated_text : text
+  transcript_id : int <<FK>>
+}
+
+entity "Summary" as summary {
+  *summary_id : int <<PK>>
+  summary_text : text
+  translation_id : int <<FK>>
+}
+
+user ||--o{ video
+video ||--o{ audio
+audio ||--o{ transcript
+transcript ||--o{ translation
+translation ||--o{ summary
+@enduml
